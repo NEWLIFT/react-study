@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	1.react  自动化构建工具
+	
+	创建安装 自动化构建工具
+	
+	npm install -g create-react-app 
+	
+	创建一个 文件名 叫做  my-app
+	
+	create-react-app my-app
+
+	进入文件
+	cd my-app
+	
+	开始运行 项目
+	npm start
+	
+	修改也加载
+	
+	在 index.js中加入
+	
+	
+	if (module.hot) {
+ 		 module.hot.accept();  //热加载 不会出现闪屏   这个需要在webpack中加载
+	} 
+	
+	
+	
+	index.js
+	     
+	     代码 示例
+	     
+			    import React from 'react';
+				import ReactDOM from 'react-dom';
+				import './index.css';
+				/*import App from './App';*/ //这里是引入模块
+				import registerServiceWorker from './registerServiceWorker';
+				
+				class App extends React.Component{  
+					
+					//app继承 component 这个组件的所有的内容  那么我们就需要把这个引入   或者直接 用React.Component 因为Component就是React 下的
+					//如果不这样写  也可以在  头部引入   例     import React,{Component} from react
+					constructor(){  //这是初始化  必须值
+						
+						super();  //里面是各种参数
+					}
+					
+					render(){//渲染
+						
+						return <div>
+						     yihdadhjad
+						     <input type="text" onClick={this.click}/>   //事件 需要用 {}  包裹起来   
+						</div>
+					}
+					
+					click=()=>{//这是箭头函数
+						
+						console.log(this)
+					}
+					
+					
+				}
+				
+				
+				
+				
+				ReactDOM.render(<App />, document.getElementById('root')); //这是把 app这个模块挂在到 root  这个节点上
+				registerServiceWorker();
+				
+				
+				
+				if (module.hot) {
+				  module.hot.accept();  //热加载 不会出现闪屏   这个需要在webpack中加载
+				} 
+					
+	
+	
+	
+	
+	
+	
+		1.react 是一个前端框架
+		
+		     核心的js 是  react.js
+		   
+		   react-dom.js 是提供与DON相关功能的
+		   
+		   Browerser.js 的作用是把jsx的语法转化为 javascript   
+		   
+		   这三个文件必须有 否则不能执行 
+		   
+		      语法
+		      
+		    
+		    jsx的语法就是 在script的标签中的 type属性是 text/babel
+		    
+		    因为他与javascript的语法不兼容 所以需要加上 text/babel
+		    
+		    
+		    例:
+		    
+             <script  type="text/babel">
+             	
+             	//数据内容  行为操作
+             	
+             </script>	
+             
+             
+        2.ReactDOM.render()
+        
+         	此方法是将把模板转化为html语言，并插入制定的DOM节点
+         	
+         	ReactDOM.render(
+         	
+         	     <h2>hello world</h2>,//这里面是模板
+         	     
+         	     document.getElementById('example')//这是需要插入的节点
+         	
+         	
+         	)
+         	
+        三.jsx语法
+        
+        var names =['alice','emily','kate'];
+        
+        *jsx的语法  就是html 可以写在 js中  不需要加任何引号
+        
+        ReactDOM.render(<div>
+        	{
+        		names.map(function(names){
+        			return <div>hello ,{name}!</div>
+        		})   //map 是 遍历 数据   names 是传入的参数  必须return出去
+        	}    // 数据和html 需要放置在 大括号里面{}      
+        </div>,
+        
+        document.getElementById('example')   //获取到的dom 节点
+        
+        )
+        
+        
+        
+        *如果 render 里边是一个标签 则用
+        
+         	
+         	ReactDOM.render(
+         	
+         	     <h2>hello world</h2>,//这里面是模板
+         	     
+         	     document.getElementById('example')//这是需要插入的节点
+         	
+         	
+         	)
+         	
+         	
+         	如果是代码块
+        
+        
+         	 var names =['alice','emily','kate'];
+        
+		        *jsx的语法  就是html 可以写在 js中  不需要加任何引号
+		        
+		        ReactDOM.render(<div>
+		        	{
+		        		names.map(function(names){
+		        			return <div>hello ,{name}!</div>
+		        		})   //map 是 遍历 数据   names 是传入的参数  必须return出去
+		        	}    // 数据和html 需要放置在 大括号里面{}      
+		        </div>,
+		        
+		        document.getElementById('example')   //获取到的dom 节点
+		        
+		        )
+        
+        	*jsx 允许在模板中插入 js的变量  如果这个变量是 数组 那么他会直接展开这个数组
+        	
+        	例
+        	
+        	  var arr = [
+        	     <h1>dddd</h1>,
+        	     <h2>jjjjj</h2>
+        	  ]
+        	  
+        	  ReactDOM.render(
+        	      <div>{arr}</div>,
+        	      document.getElementById('example')
+        	  
+        	  )
+        	  
+        	
+        	四.组件
+        	
+        	react允许将代码封装成组价，然后向普通的html标签一样在网页中插入这个组件
+        	
+        	React.createClass 的方法 就是用于生成一个组件
+        	
+        	样例
+        	
+        	  var HelloMessage = React.createClass({
+        	  
+        	     render:function(){
+        	     	
+        	     	return <h1>hello!,{this.props.name}</h1>
+        	     	//参数的取值是 通过  this.props.name     this.props 中存储了传入参数的集合
+        	     }
+        	  
+        	  })
+        	  
+        	  
+        	  ReactDOM.render(
+        	      <HelloMessage name="jhon"/>,  
+        	      //这里面是一个组件的名字   name是传入的参数 利用属性值传参
+        	      document.getElementById("example")
+        	  )   //这里边的内容 只需要用 用逗号隔开就好
+        	  // 不需要用对象的形式 传入   
+        	  
+        	  //react创建组件里面是传入的对象  render 是一个模板
+        	  //他必须有返回值
+        	  
+        	  *组件的类的第一个字母必须大写 否者会报错
+        	  
+        	  *组件类必须有一个根标签 否者会报错
+        	  
+        	  
+        	  错误样例
+        	  
+        	   var HelloMssage=React.createClass({
+        	   	  render:function(){
+        	   	  	return <h1>dddd</h1><p>ddd</p>;  
+        	   	  	//这样是两个根标签  所以会报错
+        	   	  }
+        	   })
+        	
+        	  
+        	   组件的属性可以在 this.props中取到
+        	   
+        	   
+             添加组件属性 需要注意
+             
+             class属性需要写成 className
+             
+             for 属性 需要写成 htmlFor
+             
+             这是应为 class 和 for 他们属于 js中的保留字
+             
+        
+        
+       五 this.props.children
+       
+       
+       对象的属性和组件的属性是一一对应   但是有一个属性是例外的
+       
+       
+       this.props.children  他表示组件所有的子节点
+       
+       var NotesList = React.createClass({
+       	     render:function(){
+       	     	return <ol>
+       	     		{
+       	     			React.Children.map(this.children.map,function(){
+       	     				   return <li>{child}</li>
+       	     			})
+       	     		}
+       	     	</ol>
+       	     }
+       })
+       
+       
+       ReactDOM.render(
+       		<noteslist>
+       			<span>hello</span>
+       			<span>woeld</span>
+       		</noteslist>,
+        document.body
+       )
+       
+       
+       *这里的span 是放置在 li中的   这是把  组件中的所有子节点全部包装了一个li
+       
+       
+       
+       React 提供了一个方法 是专门用来处理 this.props.children的
+       
+       
+       	这个方法是
+       	
+    	React.Children                            	
+    	
+    	
+       
+       
+        
+             
+             
+             
+             
+             
+        
+		    
+
+</body>
+</html>
